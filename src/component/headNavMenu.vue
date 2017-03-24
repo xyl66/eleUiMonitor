@@ -2,7 +2,7 @@
     <el-menu default-active="1" class="el-menu-demo" mode="horizontal" @select="handleSelect">
         <el-row class="headerbar success">
             <el-col :span="8" :offset="16">
-                <el-menu-item index="1">处理中心</el-menu-item>
+                <el-menu-item index="1"><a href="http://10.130.2.95/admin">管理員中心</a></el-menu-item>
 
                 <el-menu-item index="2">我的工作台</el-menu-item>
 

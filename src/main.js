@@ -3,12 +3,16 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import App from './App.vue'
 import Home from './component/Home.vue'
-import Form from './component/form.vue'
+import ServiceAdd from './component/service_add.vue'
+import ServiceList from './component/service_list.vue'
+import ServiceApply from './component/service_apply.vue'
+import serviceApplyList from './component/service_apply_list.vue'
 import Progress from './component/progress.vue'
 import Login from './component/login.vue'
 import Monitor_line from'./component/monitor_line.vue'
 import Monitor_pie from'./component/monitor_pie.vue'
 import Monitor from'./component/monitor.vue'
+import Search from './component/search.vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -25,9 +29,12 @@ const Bar = { template: '<div>bar</div>' }
 // 或者，只是一个组件配置对象。
 // 我们晚点再讨论嵌套路由。
 const routes = [
-    { path: '/foo', component: Foo },
+    { path: '/serviceList', component: ServiceList },
+    { path: '/serviceAdd', component: ServiceAdd },
+    { path: '/serviceApply', component: ServiceApply },
+    { path: '/serviceApplyList', component: serviceApplyList },
     { path: '/home', component: Home },
-    { path: '/form', component: Monitor_line },
+    { path: '/form', component: Search },
     { path: '/progress', component: Monitor },
     {path:'*',redirect:'/home'},
 ]

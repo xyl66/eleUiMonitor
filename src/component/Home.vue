@@ -56,6 +56,7 @@ import echarts_line from './echarts_line.vue'
             },
             gettoken(){
                 this.$http.get('http://10.130.2.95/indexapi').then(response=>{
+                    console.log(response.body.request)
                     alert(response.data.msg);
                 })
             }

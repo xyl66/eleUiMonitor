@@ -37,7 +37,8 @@
                     var tem=self.response[0].body[0]["date"];
                     tem =tem.substr(8,tem.lenght);
                     if(self.datech[sort]!=tem){ //去重
-                        if(self.datech.length>=count){
+                        if(self.datech.length>=
+                            count){
                             self.datech.shift()
                             self.datach.shift()
                             self.datacpu.shift()
