@@ -202,7 +202,11 @@
             return {
                 SN:'',
                 checked:true,
+<<<<<<< HEAD
                 num:'0',
+=======
+                num:'',
+>>>>>>> da30a82dd772c86c2998ed7b4226f12240bf1883
                 tem:'Processor',
                 pickerOptions1: {
                     shortcuts: [{
@@ -258,7 +262,11 @@
                 console.log(d.format("yyyy-MM-dd hh:mm"))
                 console.log(self.value1.format("yyyy-MM-dd hh:mm"))
                 var strdend=d<d2?d.format("yyyyMMdd hh:mm"):d2.format("yyyyMMdd hh:mm")
+<<<<<<< HEAD
                 var url='http://10.134.159.91:8080/MSAPI/rest/readData/getOldData/'+self.SN+"``"+d1.format("yyyyMMdd hh:mm") +"``"+strdend+"``"+self.tem+"``"+self.num+"``"+"88";
+=======
+                var url='http://10.134.159.91:8080/MSAPI/rest/readData/getOldData/'+self.SN+"``"+d1.format("yyyyMMdd hh:mm") +"``"+strdend+"``"+self.tem+"``"+"0"+"``"+"88";
+>>>>>>> da30a82dd772c86c2998ed7b4226f12240bf1883
                 myChart.showLoading()
                 getdata(self,url,d,d2,self.resultarr,self.datearr,self.yxisarr)
             }
