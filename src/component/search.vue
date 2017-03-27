@@ -202,11 +202,7 @@
             return {
                 SN:'',
                 checked:true,
-<<<<<<< HEAD
                 num:'0',
-=======
-                num:'',
->>>>>>> da30a82dd772c86c2998ed7b4226f12240bf1883
                 tem:'Processor',
                 pickerOptions1: {
                     shortcuts: [{
@@ -236,7 +232,18 @@
                 value2: '',
                 resultarr:[],
                 datearr:[],
-                yxisarr:[]
+                yxisarr:[],
+                //搜索結果關鍵字
+            datakey:{
+                Processor:
+                    ["Processor","% Processor time","_Total"],
+                Process:
+                    ["Process","Working Set","_total"],
+                LogicalDisk:
+                    ["LogicalDisk","Free MegaBytes","_Total"],
+                Network_Interface:
+                    ["LogicalDisk","Free MegaBytes","_Total"]
+            }
             };
         },
         mounted(){
@@ -262,11 +269,22 @@
                 console.log(d.format("yyyy-MM-dd hh:mm"))
                 console.log(self.value1.format("yyyy-MM-dd hh:mm"))
                 var strdend=d<d2?d.format("yyyyMMdd hh:mm"):d2.format("yyyyMMdd hh:mm")
-<<<<<<< HEAD
                 var url='http://10.134.159.91:8080/MSAPI/rest/readData/getOldData/'+self.SN+"``"+d1.format("yyyyMMdd hh:mm") +"``"+strdend+"``"+self.tem+"``"+self.num+"``"+"88";
-=======
-                var url='http://10.134.159.91:8080/MSAPI/rest/readData/getOldData/'+self.SN+"``"+d1.format("yyyyMMdd hh:mm") +"``"+strdend+"``"+self.tem+"``"+"0"+"``"+"88";
->>>>>>> da30a82dd772c86c2998ed7b4226f12240bf1883
+                /*var datakey=[];
+                switch(self.tem)
+                {
+                    case "Processor":
+                        datakey=["Processor","% Processor time","_Total"]
+                        breack
+                    case "Process":
+                        datakey=["Process","Working Set","_total"]
+                        break
+                    case "LogicalDisk":
+                        datakey=["LogicalDisk","Free MegaBytes","_Total"]
+                        break
+                    case "Network_Interface":
+                        datakey=["LogicalDisk","Free MegaBytes","_Total"]
+                }*/
                 myChart.showLoading()
                 getdata(self,url,d,d2,self.resultarr,self.datearr,self.yxisarr)
             }
@@ -335,9 +353,10 @@
         var count=result.length
         datearr=[]
         yxisarr=[]
+        var datakey=self.datakey[self.tem]
         for(var i=0;i<count;i++){
             datearr.push(result[i].date)
-            yxisarr.push(result[i].Processor["% Processor time"]._Total);//genxindiyitiao
+            yxisarr.push(result[i][datakey[0]][datakey[1]][datakey[2]]);//genxindiyitiao
         }
         myChart.setOption({
             xAxis: {

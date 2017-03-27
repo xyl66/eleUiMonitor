@@ -35,19 +35,19 @@
         },
         methods: {
             startHacking () {
+                var self=this
                 this.$http.post('http://10.130.2.95/v1/user',{user:this.user},{
                     'headers':{
 
                     },emulateJSON:true}).then(function(response){
                         if(response.data.status===1){
-                            alert(response.data.token);
                         setCookie('token',response.data.token,"h1");
                         setCookie('token1','goog',"h1");
-                        alert(getCookie('token'));
+                        self.$message({message:getCookie('token'),type:'success'})
                         Bus.$emit('is-login',1);
                         this.$router.push({path:'/home'});
                         }else {
-                            alert(response.data.msg);
+                            sele.$message.error(response.data.msg);
                         }
                     },function(response){
                         this.msg="erro"
