@@ -2,8 +2,11 @@
             <!--router为真时 index代表路由路径-->
             <el-menu default-active="2" class="el-menu-vertical-demo" router @open="handleOpen"
                      @close="handleClose" style="background: white">
+                <el-menu-item index="userList"><i class="el-icon-menu"></i>
+                    用戶管理
+                </el-menu-item>
                 <el-submenu index="1">
-                    <template slot="title"><i class="el-icon-message"></i>服務器</template>
+                    <template slot="title"><i class="el-icon-more"></i>服務器管理</template>
                     <el-menu-item-group>
                         <template slot="title">服務器管理</template>
                         <el-menu-item index="serviceAdd">新增</el-menu-item>

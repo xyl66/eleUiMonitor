@@ -47,7 +47,7 @@
                         Bus.$emit('is-login',1);
                         this.$router.push({path:'/home'});
                         }else {
-                            sele.$message.error(response.data.msg);
+                            self.$message.error(response.data.msg);
                         }
                     },function(response){
                         this.msg="erro"

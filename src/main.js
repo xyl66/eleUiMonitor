@@ -7,6 +7,7 @@ import ServiceAdd from './component/service_add.vue'
 import ServiceList from './component/service_list.vue'
 import ServiceApply from './component/service_apply.vue'
 import serviceApplyList from './component/service_apply_list.vue'
+import UserList from './component/user_list.vue'
 import Progress from './component/progress.vue'
 import Login from './component/login.vue'
 import Monitor_line from'./component/monitor_line.vue'
@@ -33,6 +34,7 @@ const routes = [
     { path: '/serviceAdd', component: ServiceAdd },
     { path: '/serviceApply', component: ServiceApply },
     { path: '/serviceApplyList', component: serviceApplyList },
+    { path: '/userList', component: UserList },
     { path: '/home', component: Home },
     { path: '/form', component: Search },
     { path: '/progress', component: Monitor },
