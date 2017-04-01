@@ -2,9 +2,14 @@
     <div class="content">
         <img src="../assets/logo.png">
         <h1>{{ msg }}</h1>
-        <el-button type="success" @click="start">啟用</el-button>
-        <el-button type="success" @click="stop">停用</el-button>
-        <el-table :data="tableData" stripe boder style="width: 100%" @selection-change="handleSelectionChange">
+        <el-row>
+            <el-col :span="4" :offset="20">
+                <el-button type="success" @click="start">啟用</el-button>
+                <el-button type="success" @click="stop">停用</el-button>
+            </el-col>
+        </el-row>
+
+        <el-table :data="tableData" stripe boder style="width: 100%" @selection-change="handleSelectionChange" v-loading="loading" element-loading-text="拼命加載中">
             <el-table-column type="selection" width="55"></el-table-column>
             <el-table-column type="expand">
                 <template scope="props">
@@ -169,6 +174,7 @@
     export default {
         data () {
             return {
+                loading:true,
                 url:'http://10.130.2.95/v1/',
                 msg: '服務器列表!',
                 tableData: [],
@@ -255,8 +261,9 @@
             var self=this;
             var url=this.url+'getServerList';
             this.$http.get(url).then(function(response){
-                this.tableData=response.body.subjects
-                this.totalSize=response.body.total
+                self.tableData=response.body.subjects
+                self.totalSize=response.body.total
+                self.loading=false
             },function (response) {
                 console.log('chucuo:'+response)
             });
@@ -462,6 +469,7 @@
         components:{'linechart':echarts_line}
     }
     function getserverList(self,url) {
+        self.loading=true
         self.$http.post(url,{page:self.currentPage,limit:self.pageSize},{
             'headers':{
 
@@ -471,6 +479,7 @@
                 }
                 else
                     self.$message.error(response.body.msg)
+                self.loading=false
             },function(response){
                 self.$message.error('請求響應錯誤')
             }

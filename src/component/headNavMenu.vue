@@ -29,7 +29,7 @@
 
 <style>
     .headerbar{
-        background: blue;
+        background-color: rgb(32,160,255);
     }
    .headerbar .el-menu-item,.headerbar .el-menu-item.is-active{
         color: #ffffff;

@@ -1,4 +1,5 @@
 import Vue from 'vue'
+//import '../theme/index.css' //u主題
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import App from './App.vue'
@@ -17,6 +18,11 @@ import Search from './component/search.vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import 'bootstrap/dist/css/bootstrap.css'
+//國際化
+import lang from 'element-ui/lib/locale/lang/zh-TW'
+import locale from 'element-ui/lib/locale'
+//設置語言
+locale.use(lang)
 //zhu注册三个插件
 Vue.use(ElementUI)
 Vue.use(VueRouter)
