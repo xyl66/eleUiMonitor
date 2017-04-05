@@ -168,6 +168,7 @@
 <script>
 
     import echarts_line from './echarts_line.vue'
+    import {serverIp} from '../config'
     export default {
         data () {
             return {
@@ -183,7 +184,7 @@
                     { "value": "Ubuntu14"},
                     { "value": "Ubuntu16"},],
                 dShow:0,
-                url:'http://10.130.2.95/v1/',
+                url:serverIp,
                 msg: '申請列表!',
                 tableData: [],
                 multipleSelection:[],
@@ -329,9 +330,8 @@
             handleCurrentChange(val) {
                 this.currentPage = val;
                 console.log(`当前页: ${val}`);
-                var self=this
+                var self=this;
                 var url=this.url+'getServerApplyList';
-                console.log(this.form.os);
                 getserverList(self,url);
                 /*this.$http.post(url,{page:val,limit:this.pageSize},{
                     'headers':{
@@ -465,7 +465,7 @@
                 }
                 else
                     self.$message.error(response.body.msg)
-                slef.loading=false
+                self.loading=false
             },function(response){
                 self.$message.error('請求響應錯誤')
             }

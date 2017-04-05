@@ -18,6 +18,7 @@
 
 <script>
     import Bus from '../bus.js'
+    import {serverIp} from '../config'
     export default {
         data () {
             return {
@@ -36,7 +37,7 @@
         methods: {
             startHacking () {
                 var self=this
-                this.$http.post('http://10.130.2.95/v1/user',{user:this.user},{
+                this.$http.post(serverIp+'user',{user:this.user},{
                     'headers':{
 
                     },emulateJSON:true}).then(function(response){

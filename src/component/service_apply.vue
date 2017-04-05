@@ -62,6 +62,7 @@
 </template>
 
 <script>
+    import {serverIp} from '../config'
     export default {
         data() {
             return {
@@ -111,7 +112,7 @@
         methods: {
             onSubmit() {
                 var self=this
-                var url='http://10.130.2.95/v1/serviceApply';
+                var url=serverIp+'serviceApply';
                 console.log(this.form.os);
                 this.$http.post(url,{form:this.form},{
                     'headers':{

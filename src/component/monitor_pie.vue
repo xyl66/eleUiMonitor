@@ -8,6 +8,7 @@
 <script>
     import echarts_pie from './echarts_pie.vue'
     import Vue from 'vue'
+    import {monitorIp} from '../config'
     var arr=[];
     export default {
         data(){
@@ -22,7 +23,7 @@
         },
         mounted(){
             var self=this;
-            var url='http://10.134.159.91:8080/MSAPI/rest/readData/testGet/10.134.159.94'+"``"+'1';
+            var url=monitorIp+'/rest/readData/testGet/10.134.159.94'+"``"+'1';
             console.log('kaishi1')
             this.$http.get(url).then(function(response){
                 //获取硬盘数

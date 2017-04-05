@@ -79,6 +79,7 @@
 </template>
 
 <script>
+    import {serverIp} from '../config'
     export default {
         data() {
             return {
@@ -131,7 +132,7 @@
         methods: {
             onSubmit() {
                 var self=this
-                var url='http://10.130.2.95/v1/test';
+                var url=serverIp+'test';
                 this.form.warranty=parseInt((new Date(this.form.date1).getTime())/1000)
                 console.log(this.form.os);
                 this.$http.post(url,{form:this.form},{

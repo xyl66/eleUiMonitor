@@ -155,6 +155,7 @@
 <script>
 
     import echarts_line from './echarts_line.vue'
+    import {serverIp} from '../config'
     export default {
         data () {
             //新增密碼校驗
@@ -201,7 +202,7 @@
             };
             return {
                 loading:true,
-                url:'http://10.130.2.95/v1/',
+                url:serverIp,
                 msg: '用戶列表!',
                 tableData: [],
                 multipleSelection:[],

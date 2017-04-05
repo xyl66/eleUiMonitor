@@ -29,7 +29,14 @@ Vue.use(VueRouter)
 Vue.use(VueResource)
 const Foo = { template: '<div>订单管理</div>' }
 const Bar = { template: '<div>bar</div>' }
-
+const Conf=function(){
+    var serverIp='http://10.130.2.95/v1/';
+    return function(){
+        this.getServerIp=function () {
+            return serverIp;
+        }
+    }
+}
 // 2. 定义路由
 // 每个路由应该映射一个组件。 其中"component" 可以是
 // 通过 Vue.extend() 创建的组件构造器，

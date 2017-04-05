@@ -171,11 +171,12 @@
 <script>
 
     import echarts_line from './echarts_line.vue'
+    import {serverIp} from '../config'
     export default {
         data () {
             return {
                 loading:true,
-                url:'http://10.130.2.95/v1/',
+                url:serverIp,
                 msg: '服務器列表!',
                 tableData: [],
                 multipleSelection:[],

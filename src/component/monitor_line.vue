@@ -6,6 +6,7 @@
 <script>
     import echarts_line from './echarts_line.vue'
     import Vue from 'vue'
+    import {monitorIp} from '../config'
     var count=5;
     export default {
         data(){
@@ -17,8 +18,8 @@
         },
         mounted(){
             var self=this;
-            var url='http://10.134.159.91:8080/MSAPI/rest/readData/testGet/10.134.159.94'+"``"+count;
-            var url1='http://10.134.159.91:8080/MSAPI/rest/readData/testGet/10.134.159.94'+"``"+'1';
+            var url=monitorIp+'MSAPI/rest/readData/testGet/10.134.159.94'+"``"+count;
+            var url1=monitorIp+'MSAPI/rest/readData/testGet/10.134.159.94'+"``"+'1';
             console.log('kaishi1')
             this.$http.get(url).then(function(response){
                 for (var i = count-1; i >= 0; i--) {

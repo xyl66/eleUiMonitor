@@ -52,6 +52,7 @@
 
 <script>
     import Vue from 'vue'
+    import {monitorIp} from '../config'
     /**
      * js时间对象的格式化;
      * eg:format="yyyy-MM-dd hh:mm:ss";
@@ -269,7 +270,7 @@
                 console.log(d.format("yyyy-MM-dd hh:mm"))
                 console.log(self.value1.format("yyyy-MM-dd hh:mm"))
                 var strdend=d<d2?d.format("yyyyMMdd hh:mm"):d2.format("yyyyMMdd hh:mm")
-                var url='http://10.134.159.91:8080/MSAPI/rest/readData/getOldData/'+self.SN+"``"+d1.format("yyyyMMdd hh:mm") +"``"+strdend+"``"+self.tem+"``"+self.num+"``"+"88";
+                var url=monitorIp+'MSAPI/rest/readData/getOldData/'+self.SN+"``"+d1.format("yyyyMMdd hh:mm") +"``"+strdend+"``"+self.tem+"``"+self.num+"``"+"88";
                 /*var datakey=[];
                 switch(self.tem)
                 {
@@ -317,7 +318,7 @@
                 d.add("h",1);
                 var strdend=d<d2?d.format("yyyyMMdd hh:mm"):d2.format("yyyyMMdd hh:mm")
                 if(d1<d2){
-                    var urlchange='http://10.134.159.91:8080/MSAPI/rest/readData/getOldData/'+self.SN+"``"+d1.format("yyyyMMdd hh:mm") +"``"+strdend+"``"+self.tem+"``"+"testNum"+"``"+"testPage";
+                    var urlchange=monitorIp+'MSAPI/rest/readData/getOldData/'+self.SN+"``"+d1.format("yyyyMMdd hh:mm") +"``"+strdend+"``"+self.tem+"``"+"testNum"+"``"+"testPage";
                     getdata(self,urlchange,d,d2,result,datearr,yxisarr)
                     }
                 else {
