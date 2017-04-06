@@ -81,7 +81,7 @@
         </el-pagination>
         <!--彈窗新增頁面-->
         <el-dialog title="添加用戶" v-model="dialogAddFormVisible">
-            <el-form :model="formadd" :rules="rules" label-width="80px">
+            <el-form :model="formadd" :rules="rules" label-width="100px">
                 <el-form-item label="用戶名" prop="account">
                     <el-input v-model="formadd.account" ></el-input>
                 </el-form-item>
@@ -104,9 +104,11 @@
                     <el-input type="password" v-model="formadd.password1"></el-input>
                 </el-form-item>
                 <el-form-item label="用戶組" prop="os">
-                    <el-select v-model="formadd.group_id" placeholder="请选择用戶組">
-                        <el-option v-for="item in groupOptions" :label="item.title" :value="item.id"></el-option>
-                    </el-select>
+                    <el-col :span="8">
+                        <el-select v-model="formadd.group_id" placeholder="请选择用戶組">
+                            <el-option v-for="item in groupOptions" :label="item.title" :value="item.id"></el-option>
+                        </el-select>
+                    </el-col>
                 </el-form-item>
             </el-form>
             <div class="dialog-footer" slot="footer">
@@ -116,7 +118,7 @@
         </el-dialog>
         <!--彈窗修改頁面-->
         <el-dialog title="修改服務器信息" v-model="dialogFormVisible">
-            <el-form :model="form" :rules="rules2" ref="form" label-width="80px">
+            <el-form :model="form" :rules="rules2" ref="form" label-width="100px">
                 <el-form-item label="用戶名" >
                     <span>{{form.account}}</span>
                 </el-form-item>
@@ -139,9 +141,11 @@
                     <el-input type="password" v-model="form.password1" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="用戶組" prop="os">
-                    <el-select v-model="form.group_id" placeholder="请选择用戶組">
-                        <el-option v-for="item in groupOptions" :label="item.title" :value="item.id"></el-option>
-                    </el-select>
+                    <el-col :span="8">
+                        <el-select v-model="form.group_id" placeholder="请选择用戶組">
+                            <el-option v-for="item in groupOptions" :label="item.title" :value="item.id"></el-option>
+                        </el-select>
+                    </el-col>
                 </el-form-item>
             </el-form>
             <div class="dialog-footer" slot="footer">

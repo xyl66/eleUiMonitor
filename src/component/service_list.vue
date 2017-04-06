@@ -97,23 +97,35 @@
         </el-pagination>
         <!--彈窗修改頁面-->
         <el-dialog title="修改服務器信息" v-model="dialogFormVisible">
-            <el-form :model="form" :rules="rules" label-width="80px">
+            <el-form :model="form" :rules="rules" label-width="100px">
                 <el-form-item label="IP地址" prop="ip">
                     <el-input v-model="form.ip"></el-input>
                 </el-form-item>
                 <el-form-item label="類型" prop="type">
-                    <el-select v-model="form.type" placeholder="请选择服務器類型">
-                        <el-option label="實體機" value="1"></el-option>
-                        <el-option label="虛擬機" value="0"></el-option>
-                    </el-select>
+                    <el-col :span="5">
+                        <el-select v-model="form.type" placeholder="请选择服務器類型">
+                            <el-option label="實體機" value="1"></el-option>
+                            <el-option label="虛擬機" value="0"></el-option>
+                        </el-select>
+                    </el-col>
                 </el-form-item>
                 <el-form-item label="規格">
                     <el-input v-model="form.size"></el-input>
                 </el-form-item>
                 <el-form-item label="OS版本" prop="os">
-                    <el-select v-model="form.os" placeholder="请选择操作系統版本">
-                        <el-option v-for="item in osOptions" :label="item.label" :value="item.value"></el-option>
-                    </el-select>
+                    <el-col :span="10">
+                        <el-autocomplete
+                                class="inline-input"
+                                v-model="form.os"
+                                :fetch-suggestions="querySearch"
+                                placeholder="请輸入操作系統版本"
+                                @select="handleSelect"
+                                v-focus="focusStatus"
+                        ><el-button slot="append" icon="delete" @click="handleClear"></el-button></el-autocomplete>
+                        <!--<el-select v-model="form.os" placeholder="请选择操作系統版本">
+                            <el-option v-for="item in osOptions" :label="item.label" :value="item.value"></el-option>
+                        </el-select>-->
+                    </el-col>
                 </el-form-item>
                 <el-form-item label="硬盤容量" prop="disk">
                     <el-input v-model="form.disk"></el-input>
@@ -157,7 +169,9 @@
                     <el-input v-model="form.ilo"></el-input>
                 </el-form-item>
                 <el-form-item label="是否有效">
-                    <el-switch on-text="" off-text="" v-model="form.isValid"></el-switch>
+                    <el-col :span="2">
+                        <el-switch on-text="" off-text="" v-model="form.isValid"></el-switch>
+                    </el-col>
                 </el-form-item>
             </el-form>
             <div class="dialog-footer" slot="footer">
@@ -175,6 +189,7 @@
     export default {
         data () {
             return {
+                focusStatus:false,
                 loading:true,
                 url:serverIp,
                 msg: '服務器列表!',
@@ -436,8 +451,14 @@
                 }
                 else
                     this.$message.error("未選擇服務器")
+            },
+            handleSelect(item) {
+                this.focusStatus=false
+            },
+            handleClear(){
+                this.form.os=''
+                this.focusStatus=true
             }
-
 
         },
         filters:{//計算屬性
@@ -467,7 +488,17 @@
             }
 
         },
-        components:{'linechart':echarts_line}
+        components:{'linechart':echarts_line},
+        //zhucejubuzhiling
+        directives:{
+            focus:{
+                update:function(el,{value}){
+                    if(value){
+                        el.getElementsByClassName("el-input__inner")[0].focus(); //自定义指令 获取焦点
+                    }
+                }
+            }
+        }
     }
     function getserverList(self,url) {
         self.loading=true
@@ -500,4 +531,22 @@
         margin-bottom: 0;
         width: 50%;
     }
+
+    .my-autocomplete li {
+        line-height: normal;
+        padding: 7px;
+    }
+    .my-autocomplete li .name {
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    .my-autocomplete li .addr {
+        font-size: 12px;
+        color: #b4b4b4;
+    }
+
+    .my-autocomplete li .highlighted .addr {
+        color: #ddd;
+    }
+
 </style>

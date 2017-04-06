@@ -1,26 +1,39 @@
 <template>
     <div class="content">
+        <el-autocomplete
+                class="inline-input"
+                v-model="form.os"
+                :fetch-suggestions="querySearch"
+                placeholder="请輸入操作系統版本"
+                @select="handleSelect"
+                icon="edit"
+        ></el-autocomplete>
         <el-form ref="form" :model="form" :rules="rules" label-width="100px">
             <el-form-item label="IP地址" prop="ip">
                 <el-input v-model="form.ip"></el-input>
             </el-form-item>
             <el-form-item label="類型" prop="type">
-                <el-select v-model="form.type" placeholder="请选择服務器類型">
-                    <el-option label="實體機" value="1"></el-option>
-                    <el-option label="虛擬機" value="0"></el-option>
-                </el-select>
+                <el-col :span="5">
+                    <el-select v-model="form.type" placeholder="请选择服務器類型">
+                        <el-option label="實體機" value="1"></el-option>
+                        <el-option label="虛擬機" value="0"></el-option>
+                    </el-select>
+                </el-col>
             </el-form-item>
             <el-form-item label="規格">
                 <el-input v-model="form.size"></el-input>
             </el-form-item>
-            <el-form-item label="OS版本" prop="os">
-                <el-autocomplete
-                        class="inline-input"
-                        v-model="form.os"
-                        :fetch-suggestions="querySearch"
-                        placeholder="请輸入操作系統版本"
-                        @select="handleSelect"
-                ></el-autocomplete>
+            <el-form-item label="OS版本">
+                <el-col :span="5">
+                    <el-autocomplete
+                            class="inline-input"
+                            v-model="form.os"
+                            :fetch-suggestions="querySearch"
+                            placeholder="请輸入操作系統版本"
+                            @select="handleSelect"
+                            icon="edit"
+                    ></el-autocomplete>
+                </el-col>
                 <!--<el-select v-model="form.os" placeholder="请选择操作系統版本">
                     <el-option label="区域一" value="shanghai"></el-option>
                     <el-option label="区域二" value="beijing"></el-option>
@@ -68,7 +81,9 @@
                 <el-input v-model="form.ilo"></el-input>
             </el-form-item>
             <el-form-item label="是否有效">
-                <el-switch on-text="" off-text="" v-model="form.isValid"></el-switch>
+                <el-col :span="2">
+                    <el-switch on-text="" off-text="" v-model="form.isValid"></el-switch>
+                </el-col>
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="onSubmit">立即创建</el-button>
@@ -177,7 +192,7 @@
             },
             handleSelect(item) {
                 console.log(item);
-            }
+            },
         },
         mounted() {
             this.restaurants = this.loadAll();//系統版本選項預處理
