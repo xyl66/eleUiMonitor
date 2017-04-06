@@ -1,6 +1,6 @@
 <template>
     <div class="content">
-        <img src="../assets/logo.png">
+        <!--<img src="../assets/logo.png">-->
         <h1>{{ msg }}</h1>
         <el-row>
         <el-col :span="3" :offset="20"><el-button type="success" @click="btnuseradd">新增</el-button></el-col>
