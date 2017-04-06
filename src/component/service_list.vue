@@ -82,7 +82,7 @@
                              header-align="center">
                 <template scope="scope">
                     <el-button size="small" @click="handleEdit(scope.$index,scope.row)">編輯</el-button>
-                    <el-button size="small" type="danger" @click="handleDelete(scope.$index,scope.row)">刪除</el-button>
+                    <!--<el-button size="small" type="danger" @click="handleDelete(scope.$index,scope.row)">刪除</el-button>-->
                 </template>
             </el-table-column>
         </el-table>

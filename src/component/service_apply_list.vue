@@ -3,9 +3,9 @@
         <!--<img src="../assets/logo.png">-->
         <h1>{{ msg }}</h1>
         <el-row>
-            <el-col :span="4" :offset="20">
+            <el-col :span="6" :offset="18">
                 <el-button type="success" @click="start">啟用</el-button>
-                <el-button type="success" @click="stop">停用</el-button>
+                <el-button type="success" @click="stop">批量刪除</el-button>
             </el-col>
         </el-row>
         <el-table :data="tableData" stripe boder style="width: 100%" @selection-change="handleSelectionChange" v-loading="loading" element-loading-text="拼命加載中">
@@ -81,7 +81,7 @@
                              header-align="center">
                 <template scope="scope">
                     <el-button size="small" @click="handleEdit(scope.$index,scope.row)">編輯</el-button>
-                    <el-button size="small" type="danger" @click="handleDelete(scope.$index,scope.row)">刪除</el-button>
+                    <el-button size="small" :type="scope.row.isValid?'danger':'success'" @click="handleDelete(scope.$index,scope.row)">{{scope.row.isValid|getStatusBtn}}</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -298,6 +298,24 @@
             },
             handleDelete(index,row){
                 console.log(index,row);
+                var self=this
+                var url=this.url+'updateServerApplyStatus';
+                this.$http.post(url,{form:row},{
+                    'headers':{
+
+                    },emulateJSON:true}).then(function(response){
+                        console.log(response.body.name)
+                        if(response.body.status){
+                            self.$message({message:'修改成功',type:'success'})
+                            row.isValid=!row.isValid
+                        }
+                        else
+                            self.$message.error(response.body.msg)
+                    },function(response){
+                        this.msg="erro"
+                        sele.$message.error('請求響應錯誤')
+                    }
+                )
             },
             handleSelectionChange(val){
                 this.multipleSelection=val
@@ -421,8 +439,7 @@
                 }
                 else
                     this.$message.error("未選擇服務器")
-            }
-
+            },
 
         },
         filters:{//計算屬性
@@ -449,6 +466,9 @@
             },
             statusint2str:function(value){//狀態轉換
                 return value?'有效':'無效'
+            },
+            getStatusBtn:function(type){//按鈕顯示
+                return type?'刪除':'啟用'
             }
 
         },
