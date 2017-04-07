@@ -355,7 +355,7 @@
                         console.log(response.body.editinfo)
                         if(response.body.status){
                             self.$message({message:'修改成功',type:'success'})
-                            self.form.ustatus=!self.form.ustatus
+                            self.form.ustatus=self.form.ustatus?0:1
                             self.form.handler=response.body.editinfo.editor
                             self.form.update_time=response.body.editinfo.edittime
                             self.dialogFormVisible=false
